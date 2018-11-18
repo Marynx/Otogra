@@ -32,8 +32,8 @@ public class UserService {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		md.digest(password.getBytes());
-		String md5Password= new BigInteger(1,md.digest()).toString();
+		md.update(password.getBytes());
+		String md5Password= new BigInteger(1,md.digest()).toString(16);
 		
 		return md5Password;
 	}

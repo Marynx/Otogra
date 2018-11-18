@@ -18,7 +18,8 @@
 
 <!-- Custom styles for this template -->
 
-	<link href="${pageContext.request.contextPath}/resources/css/styles.css" type="text/css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/resources/css/styles.css"
+	type="text/css" rel="stylesheet">
 
 </head>
 <body>
@@ -31,7 +32,7 @@
 			data-target=".navHeaderCollapse">
 			<span class="glyphicon glyphicon-list"></span>
 		</button>
-		
+
 
 		<div class="collapse navbar-collapse navHeaderCollapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -47,28 +48,34 @@
 
 
 	<div class="container">
-		<div class="col-md-8 col-md-offset-2">
-			<form class="form-signin" method="post" action="add">
+		<div class="col-md-6 col-md-offset-3">
+			<form class="form-signin" method="post" action="add" enctype="multipart/form-data">
 				<h2 class="form-signin-heading">Dodaj nową gre</h2>
-				<input name="inputTitle" type="text" class="form-control" placeholder="Tytuł"
-					required autofocus />
-				<textarea name="inputDescription" rows="5" name="inputUsername"
+				<label>Dodaj zdjęcie:</label>
+				 <span class="btn btn-default btn-file">
+					<input name="inputPhoto" type="file" id="imgInp">
+				</span>
+				 <img id='img-upload' height="50%" width="50%" />
+				  <input
+					name="inputTitle" type="text" class="form-control"
+					placeholder="Tytuł" required autofocus />
+				<textarea name="inputDescription" rows="7" name="inputUsername"
 					class="form-control" placeholder="Opis" required autofocus></textarea>
 				<div class="row">
-				<div class="col-sm-2">
-				<input name="inputYear" type="number" min="1980" class="form-control" placeholder="Rok"
-					required autofocus />
+					<div class="col-sm-4">
+						<input name="inputYear" type="number" min="1980"
+							class="form-control" placeholder="Rok" required autofocus />
 					</div>
-					<div class="col-sm-2">
-				<input name="inputPrice" type="number" min="0.00" step="1.00" class="form-control" placeholder="Cena"
-					required autofocus />
+					<div class="col-sm-4">
+						<input name="inputPrice" type="number" min="0.00" step="1.00"
+							class="form-control" placeholder="Cena" required autofocus />
+					</div>
 				</div>
-			</div>	
 				<input class="btn btn-lg btn-primary btn-block" type="submit"
 					value="Dodaj!" />
 			</form>
 		</div>
-    </div>
+	</div>
 
 	<footer class="footer">
 	<div class="container">
@@ -77,9 +84,9 @@
 		</p>
 	</div>
 
-	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script src="resources/js/bootstrap.js"></script>
-
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script> <script
+		src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> <script
+		src="resources/js/bootstrap.js"></script> <script
+		src="resources/js/test.js"></script>
 </body>
 </html>

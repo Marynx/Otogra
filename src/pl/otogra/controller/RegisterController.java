@@ -3,6 +3,7 @@ package pl.otogra.controller;
 
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,7 +41,11 @@ public class RegisterController extends HttpServlet {
 		String password=request.getParameter("inputPassword");
 		UserService service= new UserService();
 		service.addUser(username, email, password);
-		response.sendRedirect(request.getContextPath()+"/index.jsp");
+		
+		
+		request.login(username, password);
+		response.sendRedirect(request.getContextPath()+"/login");
+		//response.sendRedirect(request.getContextPath()+"/index.jsp");
 	}
 
 }

@@ -4,4 +4,8 @@ import pl.otogra.model.Game;
 
 public interface GameDAO extends GenericDAO<Game, Long> {
 
+	Game getGameById(Long id);
+
+	
+
 }
