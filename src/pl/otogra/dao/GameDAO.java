@@ -1,11 +1,12 @@
 package pl.otogra.dao;
 
+import java.util.List;
+
 import pl.otogra.model.Game;
 
 public interface GameDAO extends GenericDAO<Game, Long> {
 
-	Game getGameById(Long id);
-
-	
+	int getReviewCount(Long id);
+	List<Game> userGames(Long id);
 
 }

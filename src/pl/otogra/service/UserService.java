@@ -38,6 +38,13 @@ public class UserService {
 		return md5Password;
 	}
 	
+	public User read(Long id) {
+		MysqlDAOFactory factory= new MysqlDAOFactory();
+		UserDAO dao= factory.getUserDAO();
+		User user=dao.read(id);
+		return user;
+	}
+	
 	public User getUserByUsername(String username) {
 		MysqlDAOFactory factory= new MysqlDAOFactory();
 		UserDAO dao= factory.getUserDAO();

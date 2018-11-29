@@ -1,18 +1,23 @@
 package pl.otogra.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Review {
 	private long id;
-	private Timestamp date;
+	private long userId;
+	private long gameId;
+	private Timestamp time;
 	private int score;
 	private String comment;
 
 	public Review() {
 	}
 
-	public Review(Timestamp date, int score, String comment) {
-		this.date = date;
+	public Review(long userId, long gameId,int score, String comment) {
+		this.userId = userId;
+		this.gameId = gameId;
+		this.time = new Timestamp(new Date().getTime());
 		this.score = score;
 		this.comment = comment;
 	}
@@ -25,12 +30,12 @@ public class Review {
 		this.id = id;
 	}
 
-	public Timestamp getDate() {
-		return date;
+	public Timestamp getTime() {
+		return time;
 	}
 
-	public void setDate(Timestamp date) {
-		this.date = date;
+	public void setTime(Timestamp time) {
+		this.time = time;
 	}
 
 	public int getScore() {
@@ -49,9 +54,25 @@ public class Review {
 		this.comment = comment;
 	}
 
-	@Override
-	public String toString() {
-		return "Review [id=" + id + ", date=" + date + ", score=" + score + ", comment=" + comment + "]";
+	public long getUserId() {
+		return userId;
 	}
 
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public long getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(long gameId) {
+		this.gameId = gameId;
+	}
+
+	@Override
+	public String toString() {
+		return "Review [id=" + id + ", userId=" + userId + ", gameId=" + gameId + ", date=" + time + ", score=" + score
+				+ ", comment=" + comment + "]";
+	}
 }

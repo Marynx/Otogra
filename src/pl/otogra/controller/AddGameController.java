@@ -46,7 +46,7 @@ public class AddGameController extends HttpServlet {
 			GameService service = new GameService();
 			service.addGame(title, description, year, price, photoName, authorizedUser);
 			file.write(path);
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
+			response.sendRedirect(request.getContextPath() + "/");
 		} else {
 			response.sendError(403);
 		}

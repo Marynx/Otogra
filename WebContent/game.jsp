@@ -1,3 +1,6 @@
+<%@page import="pl.otogra.model.Review"%>
+<%@page import="pl.otogra.model.User"%>
+<%@page import="pl.otogra.service.UserService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,6 +24,9 @@
 <!-- Custom styles for this template -->
 <link
 	href="${pageContext.request.contextPath}/resources/css/shop-homepage.css"
+	rel="stylesheet">
+	<link
+	href="${pageContext.request.contextPath}/resources/css/styles.css"
 	rel="stylesheet">
 
 </head>
@@ -54,9 +60,9 @@
 			<div class="col-md-3">
 				<p class="lead">Shop Name</p>
 				<div class="list-group">
-					<a href="#" class="list-group-item active">Category 1</a> <a
-						href="#" class="list-group-item">Category 2</a> <a href="#"
-						class="list-group-item">Category 3</a>
+					<a href="#" class="list-group-item active">Moje gry</a> <a
+						href="#" class="list-group-item">Losuj</a> <a href="#"
+						class="list-group-item">Sortuj</a>
 				</div>
 			</div>
 
@@ -69,18 +75,35 @@
 					<div class="caption-full">
 						<h4 class="pull-right"><c:out value="${game.price}"/>pln</h4>
 						<h4>
-							<a href="#"><c:out value="${game.title }"/></a>
+							<p><c:out value="${game.title }"/></p>
+							<p><small>Rok: <c:out value="${game.year}"/></small></p>
 						</h4>
 						<p><c:out value="${game.description }"/></p>
 					</div>
 					<div class="ratings">
-						<p class="pull-right">3 reviews</p>
+						<p class="pull-right"><c:out value="${reviewCount}"/> reviews</p>
 						<p>
-							<span class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star-empty"></span> 4.0 stars
+						
+						<c:forEach var="i" begin="1" end="5">
+						<c:choose>
+							    <c:when test="${i<score/reviewCount && reviewCount!=0 }">
+							        <span class="glyphicon glyphicon-star"></span>  
+							    </c:when>    
+							    <c:otherwise>
+							         <span
+								class="glyphicon glyphicon-star-empty"></span>
+							    </c:otherwise>
+							</c:choose>
+						</c:forEach>
+								<c:choose>
+							    <c:when test="${reviewCount!=0 }">
+							        <fmt:formatNumber value="${score/reviewCount}" maxFractionDigits="1"/> stars
+							    </c:when>    
+							    <c:otherwise>
+							        0 stars
+							    </c:otherwise>
+							</c:choose>
+								
 						</p>
 					</div>
 					
@@ -88,27 +111,74 @@
 
 				<div class="well">
 
-					<div class="text-right">
-						<a class="btn btn-success">Leave a Review</a>
-					</div>
-
+					
+		<div class="row">
+		
+    	<div class="well well-sm">
+            <div class="text-center">
+            <c:choose>
+					<c:when test="${not empty sessionScope.user}">
+					
+						<a class="btn btn-success btn-lg btn-green" id="open-review-box">Leave a Review</a>
+					
+					</c:when>
+					<c:otherwise>
+						<a class="btn btn-success btn-lg btn-green" href="${pageContext.request.contextPath}/addr?id=${game.id}" id="open-review-box">Leave a Review</a>
+					</c:otherwise>
+				</c:choose>
+               <!--   <a class="btn btn-success btn-lg btn-green" href="${pageContext.request.contextPath}/addr?id=${game.id}" id="open-review-box">Leave a Review</a>-->
+            </div>
+        
+            <div class="row" id="post-review-box" style="display:none;">
+                <div class="col-md-12">
+                    <form accept-charset="UTF-8" action="addr?gameId=${game.id}" method="post">
+                    	
+                        <input id="ratings-hidden" name="rating" type="hidden" required> 
+                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5" required></textarea>
+        
+                        <div class="text-right">
+                            <div class="stars starrr" data-rating="0"></div>
+                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                            <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                            <button class="btn btn-success btn-lg" type="submit" >Leave review</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+         
+		
+	</div>
+<c:forEach var="review" items="${requestScope.reviews}">
 					<hr>
 
 					<div class="row">
 						<div class="col-md-12">
-							<span class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-								class="pull-right">10 days ago</span>
-							<p>This product was great in terms of quality. I would
-								definitely buy another!</p>
+						<%
+    UserService service=new UserService();
+	 Long review=((Review)pageContext.findAttribute("review")).getUserId();
+	User user=service.read(review);
+    String name=user.getUsername();
+    request.setAttribute("userReviewName",name);
+%>
+							<c:forEach var="i" begin="1" end="5"> 
+								<c:choose>
+					<c:when test="${i<review.score}">
+						<span class="glyphicon glyphicon-star"></span>
+					</c:when>
+					<c:otherwise>
+						<span class="glyphicon glyphicon-star-empty"></span>
+					</c:otherwise>
+				</c:choose>
+								
+							</c:forEach>  ${userReviewName}<span
+								class="pull-right"><c:out value="${review.time}"/></span>
+							<p><c:out value="${review.comment}"/></p>
 						</div>
 					</div>
 
 					<hr>
-
+</c:forEach>
 					<div class="row">
 						<div class="col-md-12">
 							<span class="glyphicon glyphicon-star"></span> <span
@@ -161,6 +231,7 @@
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src="resources/js/bootstrap.js"></script>
+	<script src="resources/js/review.js"></script>
 
 </body>
 

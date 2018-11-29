@@ -11,6 +11,8 @@
       <url-pattern>/vote</url-pattern>
       <url-pattern>/login</url-pattern>
       <url-pattern>/review</url-pattern>
+      <url-pattern>/addr</url-pattern>
+      <url-pattern>/my</url-pattern>
       <http-method>POST</http-method>
       <http-method>GET</http-method>
     </web-resource-collection>
@@ -20,6 +22,9 @@
   </security-constraint>
   <security-role>
     <role-name>user</role-name>
+  </security-role>
+  <security-role>
+    <role-name>admin</role-name>
   </security-role>
   <login-config>
     <auth-method>FORM</auth-method>

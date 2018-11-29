@@ -1,8 +1,9 @@
 document.getElementById("imgInp").onchange = function () {
     var reader = new FileReader();
-
+    
     reader.onload = function (e) {
         // get loaded data and render thumbnail.
+    	
         document.getElementById("img-upload").src = e.target.result;
     };
 
