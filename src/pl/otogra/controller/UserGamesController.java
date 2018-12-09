@@ -28,7 +28,7 @@ public class UserGamesController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		saveGamesInRequest(request);
-		request.getRequestDispatcher("userGames.jsp").forward(request, response);;
+		request.getRequestDispatcher("WEB-INF/userGames.jsp").forward(request, response);;
 	}
 	private void saveGamesInRequest(HttpServletRequest request) {
 		User loggedUser=(User) request.getSession().getAttribute("user");

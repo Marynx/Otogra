@@ -17,50 +17,30 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Shop Homepage - Start Bootstrap Template</title>
-
-<link
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<link
-	href="${pageContext.request.contextPath}/resources/css/shop-homepage.css"
-	rel="stylesheet">
+<title>Otogra</title>
+ 
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resources/css/styles.css" type="text/css" rel="stylesheet">
 	
-	<link href="${pageContext.request.contextPath}/resources/css/styles.css"
+	
+	
+	<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+-->
+<!-- Custom styles for this template -->
+  <link
+	href="${pageContext.request.contextPath}/resources/css/shop-homepage.css"
+	rel="stylesheet"> 
+	
+  <link href="${pageContext.request.contextPath}/resources/css/styles.css"
 	 rel="stylesheet">
+	 
+	
 
 </head>
 
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<a href="${pageContext.request.contextPath}/" class="navbar-brand">Otogra</a>
-
-		<button class="navbar-toggle" data-toggle="collapse"
-			data-target=".navHeaderCollapse">
-			<span class="glyphicon glyphicon-list"></span>
-		</button>
-
-		<div class="collapse navbar-collapse navHeaderCollapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="${pageContext.request.contextPath}/">Główna</a></li>
-				<li><a href="${pageContext.request.contextPath}/add">Dodaj</a></li>
-				<c:choose>
-					<c:when test="${not empty sessionScope.user}">
-						<li><a href="${pageContext.request.contextPath}/logout">Wyloguj się</a></li>
-					</c:when>
-					<c:otherwise>
-						<li><a href="${pageContext.request.contextPath}/login">Zaloguj się</a></li>
-					</c:otherwise>
-				</c:choose>
-			</ul>
-		</div>
-
-	</div>
-	</nav>
+	<jsp:include page="fragments/navbar.jspf" />
 
 	<!-- Page Content -->
 	<div class="container">
@@ -205,26 +185,27 @@
 	</div>
 	<!-- /.container -->
 
-	<div class="container">
+	<div class="container"> 
 
 		<hr>
 
-		<!-- Footer -->
+		<!-- Footer
 		<footer>
 		<div class="row">
 			<div class="col-lg-12">
 				<p>Copyright &copy; Otogra 2018</p>
 			</div>
 		</div>
-		</footer>
+		</footer>-->
+		<jsp:include page="fragments/footer.jspf" />
 
-	</div>
+  	</div> 
 	<!-- /.container -->
-
-	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	
+	  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src="resources/js/bootstrap.js"></script>
-
+	
 </body>
 
 </html>

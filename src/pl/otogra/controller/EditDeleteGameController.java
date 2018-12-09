@@ -20,7 +20,7 @@ import pl.otogra.service.GameService;
 /**
  * Servlet implementation class EditGameController
  */
-@WebServlet("/")
+@WebServlet(urlPatterns = {"/edit", "/update", "/delete"})
 @MultipartConfig
 public class EditDeleteGameController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,13 +31,12 @@ public class EditDeleteGameController extends HttpServlet {
 		switch(action) {
 		case "/edit":
 			saveGameInRequest(request);
-			request.getRequestDispatcher("/new.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/new.jsp").forward(request, response);
 			break;
 		case "/update":
 			updateGame(request, response);
 			break;
 		case "/delete":
-			System.out.println("tak");
 			deleteGame(request, response);
 			break;
 		}

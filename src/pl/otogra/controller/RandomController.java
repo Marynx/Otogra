@@ -2,6 +2,7 @@ package pl.otogra.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,30 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import pl.otogra.model.Game;
 import pl.otogra.service.GameService;
 
-/**
- * Servlet implementation class HomeController
- */
-@WebServlet("")
-public class HomeController extends HttpServlet {
+
+@WebServlet("/random")
+public class RandomController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
-    public HomeController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		saveGamesInRequest(request);
-		request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
+		GameService service=new GameService();
+		List<Game> allGames=service.getAllGames();
+		Random random=new Random();
+		int randomNumber=random.nextInt(allGames.size());
+		long randomGameId=allGames.get(randomNumber).getId();
+		response.sendRedirect(request.getContextPath()+"/game?id="+randomGameId);
 	}
-	
-	private void saveGamesInRequest(HttpServletRequest request) {
-		GameService service = new GameService();
-		List<Game> games = service.getAllGames();
-		request.setAttribute("games", games);
-	}
-	
-
 }

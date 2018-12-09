@@ -15,7 +15,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Shop Homepage - Start Bootstrap Template</title>
+<title>Otogra</title>
 
 <link
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
@@ -32,25 +32,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<a href="#" class="navbar-brand">Otogra</a>
-
-		<button class="navbar-toggle" data-toggle="collapse"
-			data-target=".navHeaderCollapse">
-			<span class="glyphicon glyphicon-list"></span>
-		</button>
-
-		<div class="collapse navbar-collapse navHeaderCollapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><a href="#">Główna</a></li>
-				<li><a href="#">Dodaj</a></li>
-				<li><a href="#">Zaloguj się</a></li>
-			</ul>
-		</div>
-
-	</div>
-	</nav>
+	<jsp:include page="fragments/navbar.jspf" />
 
 	<!-- Page Content -->
 	<div class="container">
@@ -58,11 +40,11 @@
 		<div class="row">
 
 			<div class="col-md-3">
-				<p class="lead">Shop Name</p>
+				<p class="lead">Otogra</p>
 				<div class="list-group">
-					<a href="#" class="list-group-item active">Moje gry</a> <a
-						href="#" class="list-group-item">Losuj</a> <a href="#"
-						class="list-group-item">Sortuj</a>
+					<a href="${pageContext.request.contextPath}/my" class="list-group-item">Moje gry</a> 
+					<a href="${pageContext.request.contextPath}/random" class="list-group-item">Losuj</a> 
+					<a href="${pageContext.request.contextPath}/sort" class="list-group-item">Sortuj</a>
 				</div>
 			</div>
 
@@ -179,33 +161,6 @@
 
 					<hr>
 </c:forEach>
-					<div class="row">
-						<div class="col-md-12">
-							<span class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-								class="pull-right">12 days ago</span>
-							<p>I've alredy ordered another one!</p>
-						</div>
-					</div>
-
-					<hr>
-
-					<div class="row">
-						<div class="col-md-12">
-							<span class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star"></span> <span
-								class="glyphicon glyphicon-star-empty"></span> Anonymous <span
-								class="pull-right">15 days ago</span>
-							<p>I've seen some better than this, but not at this price. I
-								definitely recommend this item.</p>
-						</div>
-					</div>
-
 				</div>
 				</c:if>
 			</div>
@@ -219,13 +174,7 @@
 		<hr>
 
 		<!-- Footer -->
-		<footer>
-		<div class="row">
-			<div class="col-lg-12">
-				<p>Copyright &copy; Your Website 2014</p>
-			</div>
-		</div>
-		</footer>
+		<jsp:include page="fragments/footer.jspf" />
 
 	</div>
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>

@@ -26,7 +26,7 @@ public class GameController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		saveGameInRequest(request);
 		saveReviewsInRequest(request);
-		request.getRequestDispatcher("game.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/game.jsp").forward(request, response);
 	}
 
 	private void saveGameInRequest(HttpServletRequest request) {
